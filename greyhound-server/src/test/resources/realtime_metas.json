@@ -1,0 +1,2961 @@
+[
+  {
+    "module": "base",
+    "app": "nebula",
+    "name": "HTTP_DYNAMIC",
+    "remark": "用户访问事件",
+    "visible_name": "",
+    "dimension": "",
+    "status": "enable",
+    "type": "event",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_DYNAMIC"
+      }
+    ],
+    "filter": {},
+    "period": {},
+    "function": {},
+    "groupbykeys": []
+  },
+  {
+    "module": "base",
+    "app": "nebula",
+    "name": "HTTP_STATIC",
+    "remark": "用户访问静态资源事件",
+    "visible_name": "",
+    "dimension": "",
+    "status": "enable",
+    "type": "event",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_STATIC"
+      }
+    ],
+    "filter": {},
+    "period": {},
+    "function": {},
+    "groupbykeys": []
+  },
+  {
+    "module": "base",
+    "app": "nebula",
+    "name": "ORDER_CANCEL",
+    "remark": "订单取消事件",
+    "visible_name": "",
+    "dimension": "",
+    "status": "enable",
+    "type": "event",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ORDER_CANCEL"
+      }
+    ],
+    "filter": {},
+    "period": {},
+    "function": {},
+    "groupbykeys": []
+  },
+  {
+    "module": "base",
+    "app": "nebula",
+    "name": "ORDER_SUBMIT",
+    "remark": "订单提交事件",
+    "visible_name": "",
+    "dimension": "",
+    "status": "enable",
+    "type": "event",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ORDER_SUBMIT"
+      }
+    ],
+    "filter": {},
+    "period": {},
+    "function": {},
+    "groupbykeys": []
+  },
+  {
+    "module": "base",
+    "app": "nebula",
+    "name": "ACCOUNT_LOGIN",
+    "remark": "用户访问事件",
+    "visible_name": "",
+    "dimension": "",
+    "status": "enable",
+    "type": "event",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ACCOUNT_LOGIN"
+      }
+    ],
+    "filter": {},
+    "period": {},
+    "function": {},
+    "groupbykeys": []
+  },
+  {
+    "module": "base",
+    "app": "nebula",
+    "name": "ACCOUNT_REGISTRATION",
+    "remark": "用户访问事件",
+    "visible_name": "",
+    "dimension": "",
+    "status": "enable",
+    "type": "event",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ACCOUNT_REGISTRATION"
+      }
+    ],
+    "filter": {},
+    "period": {},
+    "function": {},
+    "groupbykeys": []
+  },
+  {
+    "module": "base",
+    "app": "nebula",
+    "name": "TRANSACTION_WITHDRAW",
+    "remark": "用户访问事件",
+    "visible_name": "",
+    "dimension": "",
+    "status": "enable",
+    "type": "event",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "TRANSACTION_WITHDRAW"
+      }
+    ],
+    "filter": {},
+    "period": {},
+    "function": {},
+    "groupbykeys": []
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "HTTP_CLICK",
+    "type": "filter",
+    "remark": "点击",
+    "visible_name": "间隔",
+    "dimension": "",
+    "status": "enable",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_DYNAMIC"
+      }
+    ],
+    "filter": {
+      "condition": [
+        {
+          "object": "method",
+          "operation": "==",
+          "value": "POST",
+          "type": "simple"
+        },
+        {
+          "condition": [
+            {
+              "object": "method",
+              "operation": "==",
+              "value": "GET",
+              "type": "simple"
+            },
+            {
+              "object": "s_type",
+              "operation": "contains",
+              "value": "text/html",
+              "type": "simple"
+            },
+            {
+              "object": "s_bytes",
+              "operation": ">",
+              "value": "1000",
+              "type": "simple"
+            }
+          ],
+          "type": "and"
+        }
+      ],
+      "type": "or"
+    },
+    "period": {},
+    "function": {
+    },
+    "groupbykeys": []
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "did__visit_dynamic_cv_cbytes__5m__rt",
+    "remark": "单个设备5分钟动态资源请求大小变异系数",
+    "visible_name": "DID动态请求大小变异系数[5m]",
+    "dimension": "did",
+    "status": "enable",
+    "type": "dual",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "did__visit_dynamic_var_cbytes__5m__rt"
+      },
+      {
+        "app": "nebula",
+        "name": "did__visit_dynamic_avg_cbytes__5m__rt"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "/",
+      "object": "",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "did"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "did__account_regist_count__5m__rt",
+    "remark": "单个设备5分钟内注册请求总和",
+    "visible_name": "DID注册请求总数[5m]",
+    "dimension": "did",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ACCOUNT_REGISTRATION"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "count",
+      "object": "",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "did"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "did__visit_count__5m__rt",
+    "remark": "单个设备5分钟访问量总和",
+    "visible_name": "DID请求量[5m]",
+    "dimension": "did",
+    "status": "enable",
+    "type": "dual",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "did__visit_count_static__5m__rt"
+      },
+      {
+        "app": "nebula",
+        "name": "did__visit_dynamic_count__5m__rt"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "+",
+      "object": "",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "did"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "did__visit_clicks_var_timediff__5m__rt",
+    "remark": "单个设备5分钟内点击时间差方差值",
+    "visible_name": "",
+    "dimension": "did",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "did__visit__clicks_timediff__5m__rt"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "stddev",
+      "object": "",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "did"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "uid__account_dynamic_distinct_count_ip__5m__rt",
+    "remark": "单个uid5分钟不同ip个数",
+    "visible_name": "用户关联IP数[5m]",
+    "dimension": "uid",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_DYNAMIC"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "distinct_count",
+      "object": "c_ip",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "uid"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "did__account_dynamic_distinct_count_ip__5m__rt",
+    "remark": "单个did5分钟动态资源IP个数",
+    "visible_name": "DID关联IP数[5m]",
+    "dimension": "did",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_DYNAMIC"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "distinct_count",
+      "object": "c_ip",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "did"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "did__account_regist_count_fail__5m__rt",
+    "remark": "单个设备5分钟内注册失败总和",
+    "visible_name": "",
+    "dimension": "did",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ACCOUNT_REGISTRATION"
+      }
+    ],
+    "filter": {
+      "condition": [
+        {
+          "source": "ACCOUNT_REGISTRATION",
+          "object": "result",
+          "object_type": "string",
+          "object_subtype": "",
+          "operation": "==",
+          "value": "F",
+          "type": "simple"
+        }
+      ],
+      "type": "and"
+    },
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "count",
+      "object": "",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "did"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "did__account_login_fail_ratio__5m__rt",
+    "remark": "单个设备5分钟内登陆失败比例",
+    "visible_name": "DID登录失败比例[5m]",
+    "dimension": "did",
+    "status": "enable",
+    "type": "dual",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "did__account_login_count_fail__5m__rt"
+      },
+      {
+        "app": "nebula",
+        "name": "did__account_login_count__5m__rt"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "/",
+      "object": "",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "did"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "ip__account_login_fail_ratio__5m__rt",
+    "remark": "单个ip5分钟内登陆失败比例",
+    "visible_name": "IP登录失败比例[5m]",
+    "dimension": "ip",
+    "status": "enable",
+    "type": "dual",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ip__account_login_count_fail__5m__rt"
+      },
+      {
+        "app": "nebula",
+        "name": "ip__account_login_count__5m__rt"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "/",
+      "object": "",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "c_ip"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "ip__visit_clicks_var_timediff__5m__rt",
+    "remark": "单个ip5分钟内点击时间差方差值",
+    "visible_name": "",
+    "dimension": "ip",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ip__visit_clicks_timediff__5m__rt"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "stddev",
+      "object": "",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "c_ip"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "ip__visit_clicks_avg_timediff__5m__rt",
+    "remark": "单个ip5分钟内点击时间差平均值",
+    "visible_name": "IP页面点击间隔平均值[5m]",
+    "dimension": "ip",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ip__visit_clicks_timediff__5m__rt"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "avg",
+      "object": "",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "c_ip"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "ip__visit_dynamic_distinct_count_did__5m__rt",
+    "remark": "单个ip5分钟内的不同DID个数",
+    "visible_name": "IP关联DID数[5m]",
+    "dimension": "ip",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_DYNAMIC"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "distinct_count",
+      "object": "did",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "c_ip"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "did__account_regist_distinct_count_password__5m__rt",
+    "remark": "单个设备5分钟内注册的密码数量",
+    "visible_name": "DID不同注册密码数[5m]",
+    "dimension": "did",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ACCOUNT_REGISTRATION"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "distinct_count",
+      "object": "password",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "did"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "ip__account_regist_fail_ratio__5m__rt",
+    "remark": "单个ip5分钟内注册失败比例",
+    "visible_name": "IP注册失败比例[5m]",
+    "dimension": "ip",
+    "status": "enable",
+    "type": "dual",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ip__account_regist_fail_count__5m__rt"
+      },
+      {
+        "app": "nebula",
+        "name": "ip__account_regist_count__5m__rt"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "/",
+      "object": "",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "c_ip"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "did__visit_dynamic_get_ratio__5m__rt",
+    "remark": "单个设备5分钟动态资源GET请求占比",
+    "visible_name": "DID动态请求GET占比[5m]",
+    "dimension": "did",
+    "status": "enable",
+    "type": "dual",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "did__visit_dynamic_count_get__5m__rt"
+      },
+      {
+        "app": "nebula",
+        "name": "did__visit_dynamic_count__5m__rt"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "/",
+      "object": "",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "did"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "uid__account_dynamic_distinct_count_geo_city__5m__rt",
+    "remark": "单个uid5分钟不同ip对应的地域个数",
+    "visible_name": "用户关联不同城市数[5m]",
+    "dimension": "uid",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_DYNAMIC"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "distinct_count",
+      "object": "geo_city",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "uid"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "uid__account_dynamic_distinct_count_did__5m__rt",
+    "remark": "单个uid5分钟动态资源DID个数",
+    "visible_name": "用户关联DID数[5m]",
+    "dimension": "uid",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_DYNAMIC"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "distinct_count",
+      "object": "did",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "uid"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "ip__visit_clicks_timediff__5m__rt",
+    "remark": "单个ip5分钟内最近两次点击时间差",
+    "visible_name": "",
+    "dimension": "ip",
+    "status": "enable",
+    "type": "sequence",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_CLICK"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "-",
+      "object": "timestamp",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "c_ip"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "ip__visit_clicks_cv_timediff__5m__rt",
+    "remark": "单个ip5分钟内点击时间差变异系数",
+    "visible_name": "IP页面点击间隔变异系数[5m]",
+    "dimension": "ip",
+    "status": "enable",
+    "type": "dual",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ip__visit_clicks_var_timediff__5m__rt"
+      },
+      {
+        "app": "nebula",
+        "name": "ip__visit_clicks_avg_timediff__5m__rt"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "/",
+      "object": "",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "c_ip"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "ip__account_regist_count__5m__rt",
+    "remark": "单个ip5分钟内注册请求总和",
+    "visible_name": "IP注册请求总数[5m]",
+    "dimension": "ip",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ACCOUNT_REGISTRATION"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "count",
+      "object": "",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "c_ip"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "did__visit_clicks_var_timediff__5m__rt",
+    "remark": "单个did5分钟内点击时间差方差值",
+    "visible_name": "",
+    "dimension": "did",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "did__visit_clicks_timediff__5m__rt"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "stddev",
+      "object": "",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "did"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "did__visit_clicks_avg_timediff__5m__rt",
+    "remark": "单个did5分钟内点击时间差平均值",
+    "visible_name": "DID页面点击间隔平均值[5m]",
+    "dimension": "did",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "did__visit_clicks_timediff__5m__rt"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "avg",
+      "object": "",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "did"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "did__visit_clicks_cv_timediff__5m__rt",
+    "remark": "单个设备5分钟内点击时间差变异系数",
+    "visible_name": "DID页面点击间隔变异系数[5m]",
+    "dimension": "did",
+    "status": "enable",
+    "type": "dual",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "did__visit_clicks_var_timediff__5m__rt"
+      },
+      {
+        "app": "nebula",
+        "name": "did__visit_clicks_avg_timediff__5m__rt"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "/",
+      "object": "",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "did"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "did__account_login_distinct_count_uid__5m__rt",
+    "remark": "单个设备5分钟内登陆的用户数量",
+    "visible_name": "DID登录不同用户数[5m]",
+    "dimension": "did",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ACCOUNT_LOGIN"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "distinct_count",
+      "object": "uid",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "did"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "did__visit_dynamic_count_get__5m__rt",
+    "remark": "单个设备5分钟动态资源GET请求总量",
+    "visible_name": "IP注册请求总数[5m]",
+    "dimension": "did",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_DYNAMIC"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "count",
+      "object": "",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "did"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "uid__order_submit_distinct_count_merchant__5m__rt",
+    "remark": "uid5分钟内下单不同商户个数",
+    "visible_name": "用户下单不同商户数[5m]",
+    "dimension": "uid",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ORDER_SUBMIT"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "distinct_count",
+      "object": "merchant",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "uid"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "ip__visit_dynamic_distinct_count_page__5m__rt",
+    "remark": "单个ip5分钟动态资源访问page数量",
+    "visible_name": "IP动态请求不同页面数[5m]",
+    "dimension": "ip",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_DYNAMIC"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "distinct_count",
+      "object": "page",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "c_ip"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "ip__visit_dynamic_avg_cbytes__5m__rt",
+    "remark": "单个ip5分钟内请求大小平均值",
+    "visible_name": "",
+    "dimension": "ip",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_DYNAMIC"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "avg",
+      "object": "c_bytes",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "c_ip"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "ip__visit_count__5m__rt",
+    "remark": "单个ip5分钟访问量总和",
+    "visible_name": "IP请求量[5m]",
+    "dimension": "ip",
+    "status": "enable",
+    "type": "dual",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ip__visit_static_count__5m__rt"
+      },
+      {
+        "app": "nebula",
+        "name": "ip__visit_dynamic_count__5m__rt"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "+",
+      "object": "",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "c_ip"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "uid__order_submit_sum_order_money_amount__5m__rt",
+    "remark": "uid5分钟内总下单成功金额",
+    "visible_name": "用户下单成功总金额[5m]",
+    "dimension": "uid",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ORDER_SUBMIT"
+      }
+    ],
+    "filter": {
+      "condition": [
+        {
+          "source": "ORDER_SUBMIT",
+          "object": "result",
+          "object_type": "string",
+          "object_subtype": "",
+          "operation": "==",
+          "value": "T",
+          "type": "simple"
+        }
+      ],
+      "type": "and"
+    },
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "sum",
+      "object": "order_money_amount",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "uid"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "uid__order_submit_count_fail__5m__rt",
+    "remark": "uid5分钟内下单失败总次数",
+    "visible_name": "",
+    "dimension": "uid",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ORDER_SUBMIT"
+      }
+    ],
+    "filter": {
+      "condition": [
+        {
+          "source": "ORDER_SUBMIT",
+          "object": "result",
+          "object_type": "string",
+          "object_subtype": "",
+          "operation": "==",
+          "value": "F",
+          "type": "simple"
+        }
+      ],
+      "type": "and"
+    },
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "count",
+      "object": "",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "uid"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "did__account_dynamic_distinct_count_uid__5m__rt",
+    "remark": "单个did5分钟动态资源UID个数",
+    "visible_name": "DID关联用户数[5m]",
+    "dimension": "did",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_DYNAMIC"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "distinct_count",
+      "object": "uid",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "did"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "did__visit_dynamic_avg_cbytes__5m__rt",
+    "remark": "单个设备5分钟内请求大小平均值",
+    "visible_name": "",
+    "dimension": "did",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_DYNAMIC"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "avg",
+      "object": "c_bytes",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "did"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "did__visit_dynamic_distinct_count_page__5m__rt",
+    "remark": "单个设备5分钟动态资源访问page数量",
+    "visible_name": "DID动态请求不同页面数[5m]",
+    "dimension": "did",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_DYNAMIC"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "distinct_count",
+      "object": "page",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "did"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "uid__order_cancel_count__5m__rt",
+    "remark": "uid5分钟内取消订单请求总次数 ",
+    "visible_name": "用户取消订单请求数[5m]",
+    "dimension": "uid",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ORDER_CANCEL"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "count",
+      "object": "",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "uid"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "ip__account_regist_distinct_count_password__5m__rt",
+    "remark": "单个ip5分钟内注册的密码数量",
+    "visible_name": "IP不同注册密码数[5m]",
+    "dimension": "ip",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ACCOUNT_REGISTRATION"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "distinct_count",
+      "object": "password",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "c_ip"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "ip__visit_dynamic_count_post__5m__rt",
+    "remark": "单个ip5分钟动态资源POST请求总量",
+    "visible_name": "",
+    "dimension": "ip",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_DYNAMIC"
+      }
+    ],
+    "filter": {
+      "condition": [
+        {
+          "source": "HTTP_DYNAMIC",
+          "object": "method",
+          "object_type": "string",
+          "object_subtype": "",
+          "operation": "==",
+          "value": "POST",
+          "type": "simple"
+        }
+      ],
+      "type": "and"
+    },
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "count",
+      "object": "",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "c_ip"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "ip__visit_clicks_count_refererhit__5m__rt",
+    "remark": "单个ip5分钟引用页面被请求数",
+    "visible_name": "IP引用页面被请求数[5m]",
+    "dimension": "ip",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_CLICK"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "count",
+      "object": "",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "c_ip"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "ip__account_login_count__5m__rt",
+    "remark": "单个ip5分钟内登陆请求总和",
+    "visible_name": "IP登录请求总数[5m]",
+    "dimension": "ip",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ACCOUNT_LOGIN"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "count",
+      "object": "",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "c_ip"
+    ]
+  },
+  {
+    "app": "nebula",
+    "module": "realtime",
+    "name": "global__visit_count__5m__rt",
+    "remark": "5分钟访问量总和",
+    "visible_name": "",
+    "dimension": "global",
+    "status": "enable",
+    "type": "dual",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "global__visit_static_count__5m__rt"
+      },
+      {
+        "app": "nebula",
+        "name": "global__visit_dynamic_count__5m__rt"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "+",
+      "object": "",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": []
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "uid__order_submit_count__5m__rt",
+    "remark": "uid5分钟内下单总次数",
+    "visible_name": "用户下单数[5m]",
+    "dimension": "uid",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ORDER_SUBMIT"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "count",
+      "source": "ORDER_SUBMIT",
+      "object": "c_ip",
+      "object_type": "",
+      "object_subtype": ""
+    },
+    "groupbykeys": [
+      "uid"
+    ]
+  },
+  {
+    "app": "nebula",
+    "module": "realtime",
+    "name": "uid__order_submit_fail_ratio__5m__rt",
+    "remark": "uid5分钟内下单成功比例",
+    "visible_name": "用户下单失败比例[5m]",
+    "dimension": "uid",
+    "status": "enable",
+    "type": "dual",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "uid__order_submit_count_fail__5m__rt"
+      },
+      {
+        "app": "nebula",
+        "name": "uid__order_submit_count__5m__rt"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "/",
+      "object": "",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "uid"
+    ]
+  },
+  {
+    "app": "nebula",
+    "module": "realtime",
+    "name": "did__account_login_count_fail__5m__rt",
+    "remark": "单个设备5分钟内登陆失败总和",
+    "visible_name": "",
+    "dimension": "did",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ACCOUNT_LOGIN"
+      }
+    ],
+    "filter": {
+      "condition": [
+        {
+          "source": "ACCOUNT_LOGIN",
+          "object": "result",
+          "object_type": "string",
+          "object_subtype": "",
+          "operation": "==",
+          "value": "F",
+          "type": "simple"
+        }
+      ],
+      "type": "and"
+    },
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "count",
+      "object": "",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "did"
+    ]
+  },
+  {
+    "app": "nebula",
+    "module": "realtime",
+    "name": "global__visit_static_count__5m__rt",
+    "remark": " 5分钟静态资源访问量总和",
+    "visible_name": "",
+    "dimension": "global",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_STATIC"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "count",
+      "object": "",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": []
+  },
+  {
+    "app": "nebula",
+    "module": "realtime",
+    "name": "did__account_regist_distinct_count_uid__5m__rt",
+    "remark": "单个设备5分钟内注册的用户数量",
+    "visible_name": "DID注册不同用户数[5m]",
+    "dimension": "did",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ACCOUNT_REGISTRATION"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "distinct_count",
+      "object": "uid",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "did"
+    ]
+  },
+  {
+    "app": "nebula",
+    "module": "realtime",
+    "name": "did__visit_dynamic_post_ratio__5m__rt",
+    "remark": "单个设备5分钟动态资源POST请求占比",
+    "visible_name": "DID动态请求POST占比[5m]",
+    "dimension": "did",
+    "status": "enable",
+    "type": "dual",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "did__visit_dynamic_count_post__5m__rt"
+      },
+      {
+        "app": "nebula",
+        "name": "did__visit_dynamic_count__5m__rt"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "/",
+      "object": "",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "did"
+    ]
+  },
+  {
+    "app": "nebula",
+    "module": "realtime",
+    "name": "did__account_regist_fail_ratio__5m__rt",
+    "remark": "单个设备5分钟内注册失败比例",
+    "visible_name": "DID注册失败比例[5m]",
+    "dimension": "did",
+    "status": "enable",
+    "type": "dual",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "did__account_regist_count_fail__5m__rt"
+      },
+      {
+        "app": "nebula",
+        "name": "did__account_regist_count__5m__rt"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "/",
+      "object": "",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "did"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "did__visit_dynamic_var_cbytes__5m__rt",
+    "remark": "单个设备5分钟内请求大小方差值",
+    "visible_name": "",
+    "dimension": "did",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_DYNAMIC"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "stddev",
+      "object": "c_bytes",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "did"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "ip__account_login_distinct_count_uid__5m__rt",
+    "remark": "单个ip5分钟内登陆的用户数量",
+    "visible_name": "IP登录不同用户数[5m]",
+    "dimension": "ip",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ACCOUNT_LOGIN"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "distinct_count",
+      "object": "uid",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "c_ip"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "ip__visit_dynamic_distinct_count_uid__5m__rt",
+    "remark": "单个ip5分钟内访问动态资源UID个数",
+    "visible_name": "IP关联用户数[5m]",
+    "dimension": "ip",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_DYNAMIC"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "distinct_count",
+      "object": "uid",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "c_ip"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "did__visit_dynamic_distinct_count_referer__5m__rt",
+    "remark": "单个设备5分钟动态资源使用referer数量",
+    "visible_name": "DID动态请求不同引用页面数[5m]",
+    "dimension": "did",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_DYNAMIC"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "distinct_count",
+      "object": "referer",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "did"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "did__visit_dynamic_count__5m__rt",
+    "remark": "单个设备5分钟动态资源访问量总和",
+    "visible_name": "DID动态资源请求量[5m]",
+    "dimension": "did",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_DYNAMIC"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "count",
+      "object": "",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "did"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "did__visit_static_ratio__5m__rt",
+    "remark": "单个设备5分钟静态资源访问量占比",
+    "visible_name": "DID静态资源请求比[5m]",
+    "dimension": "did",
+    "status": "enable",
+    "type": "dual",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "did__visit_count_static__5m__rt"
+      },
+      {
+        "app": "nebula",
+        "name": "did__visit_count__5m__rt"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "/",
+      "object": "",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "did"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "ip__visit_dynamic_distinct_count_referer__5m__rt",
+    "remark": "单个ip5分钟访问动态资源使用referer数量",
+    "visible_name": "IP动态请求不同引用页面数[5m]",
+    "dimension": "ip",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_DYNAMIC"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "distinct_count",
+      "object": "referer",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "c_ip"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "ip__account_regist_distinct_count_uid__5m__rt",
+    "remark": "单个ip5分钟内注册的用户数量",
+    "visible_name": "IP注册不同用户数[5m]",
+    "dimension": "ip",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ACCOUNT_REGISTRATION"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "distinct_count",
+      "object": "uid",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "c_ip"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "ip__account_regist_fail_count__5m__rt",
+    "remark": "单个ip5分钟内注册失败总和",
+    "visible_name": "",
+    "dimension": "ip",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ACCOUNT_REGISTRATION"
+      }
+    ],
+    "filter": {
+      "condition": [
+        {
+          "source": "ACCOUNT_REGISTRATION",
+          "object": "result",
+          "object_type": "string",
+          "object_subtype": "",
+          "operation": "==",
+          "value": "F",
+          "type": "simple"
+        }
+      ],
+      "type": "and"
+    },
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "count",
+      "object": "",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "c_ip"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "did__visit_count_static__5m__rt",
+    "remark": "单个设备5分钟静态资源访问量总和",
+    "visible_name": "DID静态资源请求量[5m]",
+    "dimension": "did",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_STATIC"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "count",
+      "object": "",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "did"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "ip__visit_dynamic_post_ratio__5m__rt",
+    "remark": "单个ip5分钟动态资源POST请求占比",
+    "visible_name": "IP动态请求POST占比[5m]",
+    "dimension": "ip",
+    "status": "enable",
+    "type": "dual",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ip__visit_dynamic_count_post__5m__rt"
+      },
+      {
+        "app": "nebula",
+        "name": "ip__visit_dynamic_count__5m__rt"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "/",
+      "object": "",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "c_ip"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "ip__visit_dynamic_cv_cbytes__5m__rt",
+    "remark": "单个ip5分钟动态资源请求大小变异系数",
+    "visible_name": "IP动态请求大小变异系数[5m]",
+    "dimension": "ip",
+    "status": "enable",
+    "type": "dual",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ip__visit_dynamic_var_cbytes__5m__rt"
+      },
+      {
+        "app": "nebula",
+        "name": "ip__visit_dynamic_avg_cbytes__5m__rt"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "/",
+      "object": "",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "c_ip"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "did__account_login_distinct_count_password__5m__rt",
+    "remark": "单个设备5分钟内登陆的密码数量",
+    "visible_name": "DID不同登录密码数[5m]",
+    "dimension": "did",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ACCOUNT_LOGIN"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "distinct_count",
+      "object": "password",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "did"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "ip__account_login_distinct_count_password__5m__rt",
+    "remark": "单个ip5分钟内登陆的密码数量",
+    "visible_name": "IP不同登录密码数[5m]",
+    "dimension": "ip",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ACCOUNT_LOGIN"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "distinct_count",
+      "object": "password",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "c_ip"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "ip__visit_static_count__5m__rt",
+    "remark": "单个ip5分钟静态资源访问量总和",
+    "visible_name": "IP静态资源请求量[5m]",
+    "dimension": "ip",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_STATIC"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "count",
+      "object": "",
+      "object_type": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "c_ip"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "did__visit_dynamic_count_post__5m__rt",
+    "remark": "单个设备5分钟动态资源POST请求总量",
+    "visible_name": "",
+    "dimension": "did",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_DYNAMIC"
+      }
+    ],
+    "filter": {
+      "condition": [
+        {
+          "source": "HTTP_DYNAMIC",
+          "object": "method",
+          "object_type": "string",
+          "object_subtype": "",
+          "operation": "==",
+          "value": "POST",
+          "type": "simple"
+        }
+      ],
+      "type": "and"
+    },
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "count",
+      "source": "",
+      "object": "",
+      "object_type": "",
+      "object_subtype": ""
+    },
+    "groupbykeys": [
+      "did"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "ip__visit_dynamic_get_ratio__5m__rt",
+    "remark": "单个ip5分钟动态资源GET请求占比",
+    "visible_name": "IP动态请求GET占比[5m]",
+    "dimension": "ip",
+    "status": "enable",
+    "type": "dual",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ip__visit_dynamic_count_get__5m__rt"
+      },
+      {
+        "app": "nebula",
+        "name": "ip__visit_dynamic_count__5m__rt"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "/",
+      "source": "",
+      "object": "",
+      "object_type": "",
+      "object_subtype": ""
+    },
+    "groupbykeys": [
+      "c_ip"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "uid_order_submit_count_succ__5m__rt",
+    "remark": "uid5分钟内平均下单成功金额",
+    "visible_name": "用户平均下单成功金额[5m]",
+    "dimension": "ip",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ORDER_SUBMIT"
+      }
+    ],
+    "filter": {
+      "condition": [
+        {
+          "source": "ORDER_SUBMIT",
+          "object": "result",
+          "object_type": "string",
+          "object_subtype": "",
+          "operation": "==",
+          "value": "T",
+          "type": "simple"
+        }
+      ],
+      "type": "and"
+    },
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "avg",
+      "source": "ORDER_SUBMIT",
+      "object": "order_money_amount",
+      "object_type": "string",
+      "object_subtype": ""
+    },
+    "groupbykeys": [
+      "uid"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "uid_order_submit_count_succ__5m__rt",
+    "remark": "uid5分钟内下单成功总次数",
+    "visible_name": "用户下单成功数[5m]",
+    "dimension": "uid",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ORDER_SUBMIT"
+      }
+    ],
+    "filter": {
+      "condition": [
+        {
+          "source": "ORDER_SUBMIT",
+          "object": "result",
+          "object_type": "string",
+          "object_subtype": "",
+          "operation": "==",
+          "value": "T",
+          "type": "simple"
+        }
+      ],
+      "type": "and"
+    },
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "count",
+      "source": "ORDER_SUBMIT",
+      "object": "c_ip",
+      "object_type": "",
+      "object_subtype": ""
+    },
+    "groupbykeys": [
+      "uid"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "ip__visit_dynamic_count__5m__rt",
+    "remark": "单个ip5分钟动态资源访问量总和",
+    "visible_name": "IP动态资源请求量[5m]",
+    "dimension": "ip",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_DYNAMIC"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "count",
+      "source": "HTTP_DYNAMIC",
+      "object": "c_ip",
+      "object_type": "string",
+      "object_subtype": ""
+    },
+    "groupbykeys": [
+      "c_ip"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "ip__visit_dynamic_var_cbytes__5m__rt",
+    "remark": "单个ip5分钟内请求大小标准差值",
+    "visible_name": "",
+    "dimension": "ip",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_DYNAMIC"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "stddev",
+      "source": "HTTP_DYNAMIC",
+      "object": "c_bytes",
+      "object_type": "",
+      "object_subtype": ""
+    },
+    "groupbykeys": [
+      "c_ip"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "did__visit_clicks_avg_timediff__5m__rt",
+    "remark": "单个设备5分钟内点击时间差平均值",
+    "visible_name": "DID页面点击间隔平均值[5m]",
+    "dimension": "did",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "did__visit_clicks_timediff__5m__rt"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "avg",
+      "source": "HTTP_DYNAMIC",
+      "object": "timestamp",
+      "object_type": "string",
+      "object_subtype": ""
+    },
+    "groupbykeys": [
+      "did"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "did__account_login_count__5m__rt",
+    "remark": "单个设备5分钟内登录请求总和",
+    "visible_name": "DID登录请求总数[5m]",
+    "dimension": "did",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ACCOUNT_LOGIN"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "count",
+      "source": "ACCOUNT_LOGIN",
+      "object": "c_ip",
+      "object_type": "string",
+      "object_subtype": ""
+    },
+    "groupbykeys": [
+      "did"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "ip__account_login_count_fail__5m__rt",
+    "remark": "单个ip5分钟内登陆失败总和",
+    "visible_name": "",
+    "dimension": "ip",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ACCOUNT_LOGIN"
+      }
+    ],
+    "filter": {
+      "condition": [
+        {
+          "source": "ACCOUNT_LOGIN",
+          "object": "result",
+          "object_type": "string",
+          "object_subtype": "",
+          "operation": "==",
+          "value": "F",
+          "type": "simple"
+        }
+      ],
+      "type": "and"
+    },
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "count",
+      "source": "ACCOUNT_LOGIN",
+      "object": "c_ip",
+      "object_type": "string",
+      "object_subtype": ""
+    },
+    "groupbykeys": [
+      "c_ip"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "global__visit_dynamic_count__5m__rt",
+    "remark": "5分钟动态资源访问量总和",
+    "visible_name": "",
+    "dimension": "global",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_DYNAMIC"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "count",
+      "source": "HTTP_DYNAMIC",
+      "object": "c_ip",
+      "object_type": "string",
+      "object_subtype": ""
+    },
+    "groupbykeys": []
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "did__account_dynamic_distinct_count_geo_city__5m__rt",
+    "remark": "单个did5分钟关联不同城市个数",
+    "visible_name": "DID关联不同城市数[5m]",
+    "dimension": "did",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_DYNAMIC"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "distinct_count",
+      "source": "HTTP_DYNAMIC",
+      "object": "geo_city",
+      "object_type": "string",
+      "object_subtype": ""
+    },
+    "groupbykeys": [
+      "did"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "uid__order_distinct_count_receiver_geo_city__5m__rt",
+    "remark": "uid5分钟内下单不同收货城市数",
+    "visible_name": "用户下单不同收货城市数[5m]",
+    "dimension": "uid",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ORDER_SUBMIT"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "distinct_count",
+      "source": "ORDER_SUBMIT",
+      "object": "receiver_address_city",
+      "object_type": "string",
+      "object_subtype": ""
+    },
+    "groupbykeys": [
+      "uid"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "did__visit_clicks_timediff__5m__rt",
+    "remark": "单个设备5分钟内最近两次点击时间差",
+    "visible_name": "",
+    "dimension": "uid",
+    "status": "enable",
+    "type": "sequence",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_CLICK"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "-",
+      "source": "HTTP_CLICK",
+      "object": "timestamp",
+      "object_type": "",
+      "object_subtype": ""
+    },
+    "groupbykeys": [
+      "did"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "ip__visit_dynamic_count_get__5m__rt",
+    "remark": "单个ip5分钟动态资源GET请求总量",
+    "visible_name": "",
+    "dimension": "ip",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_DYNAMIC"
+      }
+    ],
+    "filter": {
+      "condition": [
+        {
+          "source": "HTTP_DYNAMIC",
+          "object": "method",
+          "object_type": "string",
+          "object_subtype": "",
+          "operation": "==",
+          "value": "GET",
+          "type": "simple"
+        }
+      ],
+      "type": "and"
+    },
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "count",
+      "source": "HTTP_DYNAMIC",
+      "object": "c_ip",
+      "object_type": "string",
+      "object_subtype": ""
+    },
+    "groupbykeys": [
+      "c_ip"
+    ]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "ip__visit_static_ratio__5m__rt",
+    "remark": "单个ip5分钟静态资源访问量占比",
+    "visible_name": "",
+    "dimension": "ip",
+    "status": "enable",
+    "type": "dual",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ip__visit_static_count__5m__rt"
+      },
+      {
+        "app": "nebula",
+        "name": "ip__visit_count__5m__rt"
+      }
+    ],
+    "period": {
+      "type": "seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "/",
+      "source": "",
+      "object": "",
+      "object_type": "",
+      "object_subtype": ""
+    },
+    "groupbykeys": [
+      "c_ip"
+    ]
+  }
+]

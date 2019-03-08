@@ -1,0 +1,374 @@
+[
+  {
+    "module": "base",
+    "app": "nebula",
+    "name": "ACCOUNT_LOGIN",
+    "remark": "用户登录事件",
+    "visible_name": "",
+    "dimension": "",
+    "status": "enable",
+    "type": "event",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ACCOUNT_LOGIN"
+      }
+    ],
+    "filter": {},
+    "period": {},
+    "function": {},
+    "groupbykeys": []
+  },
+  {
+    "module": "base",
+    "app": "nebula",
+    "name": "HTTP_DYNAMIC",
+    "remark": "用户访问事件",
+    "visible_name": "",
+    "dimension": "",
+    "status": "enable",
+    "type": "event",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_DYNAMIC"
+      }
+    ],
+    "filter": {},
+    "period": {},
+    "function": {},
+    "groupbykeys": []
+  },
+  {
+    "status":"enable",
+    "filter":{
+      "type":"and",
+      "condition":[
+        {
+          "object_subtype":"",
+          "object":"c_ip",
+          "object_type":"string",
+          "value":".",
+          "source":"ACCOUNT_LOGIN",
+          "param":"",
+          "operation":"contains",
+          "type":"simple"
+        }
+      ]
+    },
+    "remark":"ip trigger for strategy interval_测试1",
+    "name":"_ip__strategy__None__696E74657276616C5FE6B58BE8AF9531__trigger__rt",
+    "hint":{
+
+    },
+    "value_category":"",
+    "app":"nebula",
+    "period":{
+
+    },
+    "module":"realtime",
+    "value_subtype":"",
+    "visible_name":"ip trigger for strategy interval_测试1",
+    "source":[
+      {
+        "app":"nebula",
+        "name":"ACCOUNT_LOGIN"
+      }
+    ],
+    "value_type":"",
+    "groupbykeys":[
+      "c_ip"
+    ],
+    "function":{
+
+    },
+    "type":"filter",
+    "dimension":"ip"
+  },
+  {
+    "status":"enable",
+    "filter":{
+
+    },
+    "remark":"collector for strategy interval_测试1",
+    "name":"_ip__strategy__None__696E74657276616C5FE6B58BE8AF9531__collect__rt",
+    "hint":{
+
+    },
+    "value_category":"",
+    "app":"nebula",
+    "period":{
+
+    },
+    "module":"realtime",
+    "value_subtype":"",
+    "visible_name":"collector for strategy interval_测试1",
+    "source":[
+      {
+        "app":"nebula",
+        "name":"_ip__strategy__None__696E74657276616C5FE6B58BE8AF9531__trigger__rt"
+      }
+    ],
+    "value_type":"",
+    "groupbykeys":[
+      "c_ip"
+    ],
+    "function":{
+      "object_subtype":"",
+      "object":"",
+      "object_type":"",
+      "param":"interval_测试1",
+      "source":"_ip__strategy__None__696E74657276616C5FE6B58BE8AF9531__trigger__rt",
+      "config":{
+        "trigger":"_ip__strategy__None__696E74657276616C5FE6B58BE8AF9531__trigger__rt"
+      },
+      "method":"setblacklist"
+    },
+    "type":"collector",
+    "dimension":"ip"
+  },
+  {
+    "status":"enable",
+    "filter":{
+      "object_subtype":"",
+      "object":"did",
+      "object_type":"string",
+      "value":"",
+      "source":"ACCOUNT_LOGIN",
+      "param":"",
+      "operation":"!=",
+      "type":"simple"
+    },
+    "remark":"did trigger for strategy interval_测试1",
+    "name":"_did__strategy__None__696E74657276616C5FE6B58BE8AF9531__trigger__rt",
+    "hint":{
+
+    },
+    "value_category":"",
+    "app":"nebula",
+    "period":{
+
+    },
+    "module":"realtime",
+    "value_subtype":"",
+    "visible_name":"did trigger for strategy interval_测试1",
+    "source":[
+      {
+        "app":"nebula",
+        "name":"ACCOUNT_LOGIN"
+      }
+    ],
+    "value_type":"",
+    "groupbykeys":[
+      "did"
+    ],
+    "function":{
+
+    },
+    "type":"filter",
+    "dimension":"did"
+  },
+  {
+    "status":"enable",
+    "filter":{
+      "type":"and",
+      "condition":[
+        {
+          "object_subtype":"",
+          "object":"page",
+          "object_type":"string",
+          "value":"captcha",
+          "source":"HTTP_DYNAMIC",
+          "param":"",
+          "operation":"contains",
+          "type":"simple"
+        }
+      ]
+    },
+    "remark":"interval 1st counter variable(last counter event) for term 1",
+    "name":"_did__strategy__None__696E74657276616C5FE6B58BE8AF9531__counter__2_1___rt",
+    "hint":{
+
+    },
+    "value_category":"",
+    "app":"nebula",
+    "period":{
+      "type":"last_n_seconds",
+      "value":300
+    },
+    "module":"realtime",
+    "value_subtype":"",
+    "visible_name":"interval 1st counter variable(last counter event) for term 1",
+    "source":[
+      {
+        "app":"nebula",
+        "name":"HTTP_DYNAMIC"
+      }
+    ],
+    "value_type":"long",
+    "groupbykeys":[
+      "did"
+    ],
+    "function":{
+      "object_subtype":"",
+      "object":"timestamp",
+      "object_type":"long",
+      "param":"",
+      "source":"HTTP_DYNAMIC",
+      "config":{
+
+      },
+      "method":"last"
+    },
+    "type":"aggregate",
+    "dimension":"did"
+  },
+  {
+    "status":"enable",
+    "filter":{
+
+    },
+    "remark":"interval 2nd counter variable(last trigger event) for term 1",
+    "name":"_did__strategy__None__696E74657276616C5FE6B58BE8AF9531__counter__2_2___rt",
+    "hint":{
+
+    },
+    "value_category":"",
+    "app":"nebula",
+    "period":{
+      "type":"last_n_seconds",
+      "value":300
+    },
+    "module":"realtime",
+    "value_subtype":"",
+    "visible_name":"interval 2nd counter variable(last trigger event) for term 1",
+    "source":[
+      {
+        "app":"nebula",
+        "name":"_did__strategy__None__696E74657276616C5FE6B58BE8AF9531__trigger__rt"
+      }
+    ],
+    "value_type":"long",
+    "groupbykeys":[
+      "did"
+    ],
+    "function":{
+      "object_subtype":"",
+      "object":"timestamp",
+      "object_type":"long",
+      "param":"",
+      "source":"_did__strategy__None__696E74657276616C5FE6B58BE8AF9531__trigger__rt",
+      "config":{
+
+      },
+      "method":"last"
+    },
+    "type":"aggregate",
+    "dimension":"did"
+  },
+  {
+    "status":"enable",
+    "filter":{
+
+    },
+    "remark":"interval 3rd dual variable(-value) for term 1",
+    "name":"_did__strategy__None__696E74657276616C5FE6B58BE8AF9531__counter__2_3___rt",
+    "hint":{
+
+    },
+    "value_category":"",
+    "app":"nebula",
+    "period":{
+      "type":"last_n_seconds",
+      "value":300
+    },
+    "module":"realtime",
+    "value_subtype":"",
+    "visible_name":"interval 3rd dual variable(-value) for term 1",
+    "source":[
+      {
+        "app":"nebula",
+        "name":"_did__strategy__None__696E74657276616C5FE6B58BE8AF9531__counter__2_2___rt"
+      },
+      {
+        "app":"nebula",
+        "name":"_did__strategy__None__696E74657276616C5FE6B58BE8AF9531__counter__2_1___rt"
+      }
+    ],
+    "value_type":"long",
+    "groupbykeys":[
+      "did"
+    ],
+    "function":{
+      "object_subtype":"",
+      "object":"value",
+      "object_type":"long",
+      "param":"",
+      "source":"_did__strategy__None__696E74657276616C5FE6B58BE8AF9531__counter__2_2___rt",
+      "config":{
+
+      },
+      "method":"-"
+    },
+    "type":"dual",
+    "dimension":"did"
+  },
+  {
+    "status":"enable",
+    "filter":{
+      "type":"and",
+      "condition":[
+        {
+          "object_subtype":"",
+          "object":"value",
+          "object_type":"long",
+          "value":"2000",
+          "source":"_did__strategy__None__696E74657276616C5FE6B58BE8AF9531__counter__2_3___rt",
+          "param":"",
+          "operation":"<",
+          "type":"simple"
+        }
+      ]
+    },
+    "remark":"collector for strategy interval_测试1",
+    "name":"_did__strategy__None__696E74657276616C5FE6B58BE8AF9531__collect__rt",
+    "hint":{
+
+    },
+    "value_category":"",
+    "app":"nebula",
+    "period":{
+
+    },
+    "module":"realtime",
+    "value_subtype":"",
+    "visible_name":"collector for strategy interval_测试1",
+    "source":[
+      {
+        "app":"nebula",
+        "name":"_did__strategy__None__696E74657276616C5FE6B58BE8AF9531__trigger__rt"
+      },
+      {
+        "app":"nebula",
+        "name":"_did__strategy__None__696E74657276616C5FE6B58BE8AF9531__counter__2_3___rt"
+      }
+    ],
+    "value_type":"",
+    "groupbykeys":[
+      "did"
+    ],
+    "function":{
+      "object_subtype":"",
+      "object":"",
+      "object_type":"",
+      "param":"interval_测试1",
+      "source":"_did__strategy__None__696E74657276616C5FE6B58BE8AF9531__trigger__rt",
+      "config":{
+        "trigger":"_did__strategy__None__696E74657276616C5FE6B58BE8AF9531__trigger__rt"
+      },
+      "method":"setblacklist"
+    },
+    "type":"collector",
+    "dimension":"did"
+  }
+]

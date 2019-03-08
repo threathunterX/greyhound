@@ -1,0 +1,563 @@
+[
+  {
+    "module": "base",
+    "app": "nebula",
+    "name": "HTTP_DYNAMIC",
+    "remark": "用户访问事件",
+    "visible_name": "",
+    "dimension": "",
+    "status": "enable",
+    "type": "event",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_DYNAMIC"
+      }
+    ],
+    "filter": {},
+    "period": {},
+    "function": {},
+    "groupbykeys": []
+  },
+  {
+    "module": "base",
+    "app": "nebula",
+    "name": "ACCOUNT_REGISTRATION",
+    "remark": "账号-注册",
+    "visible_name": "账号-注册",
+    "dimension": "",
+    "status": "enable",
+    "type": "event",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ACCOUNT_REGISTRATION"
+      }
+    ],
+    "filter": {},
+    "period": {},
+    "function": {},
+    "groupbykeys": [],
+    "hint": {}
+  },
+  {
+    "module": "base",
+    "app": "nebula",
+    "name": "ACCOUNT_LOGIN",
+    "remark": "账号-登录",
+    "visible_name": "账号-登录",
+    "dimension": "",
+    "status": "enable",
+    "type": "event",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ACCOUNT_LOGIN"
+      }
+    ],
+    "filter": {},
+    "period": {},
+    "function": {},
+    "groupbykeys": [],
+    "hint": {}
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "did__account_regist_count__5m__rt",
+    "remark": "单个DID5分钟内注册请求总和",
+    "visible_name": "DID注册请求总数[5m]",
+    "dimension": "did",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "long",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ACCOUNT_REGISTRATION"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "last_n_seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "count",
+      "source": "ACCOUNT_REGISTRATION",
+      "object": "",
+      "object_type": "",
+      "object_subtype": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "did"
+    ],
+    "hint": {}
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "did__visit_dynamic_count__5m__rt",
+    "remark": "单个DID5分钟动态资源访问量总和",
+    "visible_name": "DID动态资源请求量[5m]",
+    "dimension": "did",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "long",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_DYNAMIC"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "last_n_seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "count",
+      "source": "HTTP_DYNAMIC",
+      "object": "",
+      "object_type": "",
+      "object_subtype": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "did"
+    ],
+    "hint": {}
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "ip__visit_dynamic_count__5m__rt",
+    "remark": "单个IP5分钟动态资源访问量总和",
+    "visible_name": "IP动态资源请求量[5m]",
+    "dimension": "ip",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "long",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_DYNAMIC"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "last_n_seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "count",
+      "source": "HTTP_DYNAMIC",
+      "object": "c_ip",
+      "object_type": "string",
+      "object_subtype": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "c_ip"
+    ],
+    "hint": {}
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "ip__account_login_count__5m__rt",
+    "remark": "单个IP5分钟内登陆请求总和",
+    "visible_name": "IP登录请求总数[5m]",
+    "dimension": "ip",
+    "status": "enable",
+    "type": "aggregate",
+    "value_type": "long",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ACCOUNT_LOGIN"
+      }
+    ],
+    "filter": {},
+    "period": {
+      "type": "last_n_seconds",
+      "value": "300"
+    },
+    "function": {
+      "method": "count",
+      "source": "ACCOUNT_LOGIN",
+      "object": "",
+      "object_type": "",
+      "object_subtype": "",
+      "param": ""
+    },
+    "groupbykeys": [
+      "c_ip"
+    ],
+    "hint": {}
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "_ip__strategy__1478671631452__76697369745F485F3430345F6970__trigger",
+    "type": "filter",
+    "remark": "trigger for strategy visit_404_H_regist_H_count_did",
+    "dimension": "ip",
+    "status": "enable",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_DYNAMIC"
+      }
+    ],
+    "filter": {
+      "object": "status",
+      "operation": "==",
+      "value": "404",
+      "type": "simple"
+    },
+    "period": {},
+    "function": {
+    },
+    "groupbykeys": []
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "_ip__strategy__1478671631452__76697369745F485F3430345F6970__counter__1",
+    "type": "aggregate",
+    "remark": "temp variable for term",
+    "dimension": "ip",
+    "status": "enable",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_DYNAMIC"
+      }
+    ],
+    "filter": {
+      "object": "status",
+      "operation": "==",
+      "value": "404",
+      "type": "simple"
+    },
+    "function": {
+      "method": "count"
+    },
+    "groupbykeys": [
+      "c_ip"
+    ],
+    "period": {}
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "type": "collector",
+    "name": "_ip__strategy__1478671631452__76697369745F485F3430345F6970__collect",
+    "remark": "collector for strategy visit_404_H_regist_H_count_did",
+    "dimension": "ip",
+    "status": "enable",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "_ip__strategy__1478671631452__76697369745F485F3430345F6970__counter__1"
+      },
+      {
+        "app": "nebula",
+        "name": "_ip__strategy__1478671631452__76697369745F485F3430345F6970__trigger"
+      }
+    ],
+    "filter": {
+      "source": "_ip__strategy__1478671631452__76697369745F485F3430345F6970__counter__1",
+      "object": "value",
+      "operation": ">",
+      "value": "10",
+      "type": "simple"
+    },
+    "period": {},
+    "function": {
+      "method": "setblacklist",
+      "param": "visit_404_H_regist_H_count_did",
+      "config": {
+        "trigger": "_ip__strategy__1478671631452__76697369745F485F3430345F6970__trigger"
+      }
+    },
+    "groupbykeys": ["c_ip"]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "type": "filter",
+    "name": "_did__strategy__1478671631452__76697369745F485F3430345F6970__trigger",
+    "remark": "trigger for strategy visit_404_H_regist_H_count_did",
+    "visible_name": "",
+    "dimension": "did",
+    "status": "enable",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_DYNAMIC"
+      }
+    ],
+    "filter": {
+      "object": "status",
+      "operation": "==",
+      "value": "404",
+      "type": "simple"
+    },
+    "period": {},
+    "function": {
+    },
+    "groupbykeys": []
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "_did__strategy__1478671631452__76697369745F485F3430345F6970__collect",
+    "dimension": "did",
+    "type": "collector",
+    "remark": "collector for strategy visit_404_H_regist_H_count_did",
+    "status": "enable",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "did__account_regist_count__5m__rt"
+      },
+      {
+        "app": "nebula",
+        "name": "_did__strategy__1478671631452__76697369745F485F3430345F6970__trigger"
+      }
+    ],
+    "filter": {
+      "source": "did__account_regist_count__5m__rt",
+      "object": "value",
+      "operation": ">",
+      "value": "10",
+      "type": "simple"
+    },
+    "period": {},
+    "function": {
+      "method": "setblacklist",
+      "param": "visit_404_H_regist_H_count_did",
+      "config": {
+        "trigger": "_did__strategy__1478671631452__76697369745F485F3430345F6970__trigger"
+      }
+    },
+    "groupbykeys": ["did"]
+  },
+
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "_ip__strategy__1479567967809__E7AD96E795A5__trigger__rt",
+    "type": "filter",
+    "remark": "internal variable",
+    "visible_name": "",
+    "dimension": "ip",
+    "status": "enable",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ACCOUNT_LOGIN"
+      }
+    ],
+    "filter": {
+      "condition": [
+        {
+          "object": "c_ip",
+          "operation": "contains",
+          "value": "172.16.",
+          "type": "simple"
+        },
+        {
+          "object": "useragent",
+          "operation": "!match",
+          "value": ".*(iphone|ipod|android|ios|phone|ipad).*",
+          "type": "simple"
+        }
+      ],
+      "type": "and"
+    },
+    "period": {},
+    "function": {
+    },
+    "groupbykeys": []
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "_ip__strategy__1479567967809__E7AD96E795A5__counter__4__rt",
+    "type": "aggregate",
+    "remark": "temp variable for term",
+    "dimension": "ip",
+    "status": "enable",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ACCOUNT_LOGIN"
+      }
+    ],
+    "filter": {
+      "condition": [
+        {
+          "object": "platform",
+          "operation": "==",
+          "value": "9",
+          "type": "simple"
+        },
+        {
+          "object": "platform",
+          "operation": "==",
+          "value": "10",
+          "type": "simple"
+        }
+      ],
+      "type": "or"
+    },
+    "function": {
+      "method": "count"
+    },
+    "groupbykeys": [
+      "c_ip"
+    ],
+    "period": {}
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "_ip__strategy__1479567967809__E7AD96E795A5__collect__rt",
+    "dimension": "ip",
+    "type": "collector",
+    "remark": "collector for strategy visit_404_H_regist_H_count_did",
+    "status": "enable",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ip__account_login_count__5m__rt"
+      },
+      {
+        "app": "nebula",
+        "name": "ip__visit_dynamic_count__5m__rt"
+      },
+      {
+        "app": "nebula",
+        "name": "_ip__strategy__1479567967809__E7AD96E795A5__counter__4__rt"
+      },
+      {
+        "app": "nebula",
+        "name": "_ip__strategy__1479567967809__E7AD96E795A5__trigger__rt"
+      }
+    ],
+    "filter": {
+      "condition": [
+        {
+          "source": "ip__account_login_count__5m__rt",
+          "object": "value",
+          "operation": ">",
+          "value": "1",
+          "type": "simple"
+        },
+        {
+          "source": "ip__visit_dynamic_count__5m__rt",
+          "object": "value",
+          "operation": ">",
+          "value": "2",
+          "type": "simple"
+        },
+        {
+          "source": "_ip__strategy__1479567967809__E7AD96E795A5__counter__4__rt",
+          "object": "value",
+          "operation": ">",
+          "value": "1",
+          "type": "simple"
+        }
+      ],
+      "type": "and"
+    },
+    "period": {},
+    "function": {
+      "method": "setblacklist",
+      "param": "策略",
+      "config": {
+        "trigger": "_ip__strategy__1479567967809__E7AD96E795A5__trigger__rt"
+      }
+    },
+    "groupbykeys": ["c_ip"]
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "type": "filter",
+    "name": "_did__strategy__1479567967809__E7AD96E795A5__trigger__rt",
+    "remark": "did trigger for strategy 策略",
+    "visible_name": "",
+    "dimension": "did",
+    "status": "enable",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "ACCOUNT_LOGIN"
+      }
+    ],
+    "filter": {
+      "object": "did",
+      "operation": "!=",
+      "value": "",
+      "type": "simple"
+    },
+    "period": {},
+    "function": {
+    },
+    "groupbykeys": []
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "_did__strategy__1479567967809__E7AD96E795A5__collect__rt",
+    "dimension": "did",
+    "type": "collector",
+    "remark": "collector for strategy 策略",
+    "status": "enable",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "did__visit_dynamic_count__5m__rt"
+      },
+      {
+        "app": "nebula",
+        "name": "_did__strategy__1479567967809__E7AD96E795A5__trigger__rt"
+      }
+    ],
+    "filter": {
+      "source": "did__visit_dynamic_count__5m__rt",
+      "object": "value",
+      "operation": ">",
+      "value": "2",
+      "type": "simple"
+    },
+    "period": {},
+    "function": {
+      "method": "setblacklist",
+      "param": "策略",
+      "config": {
+        "trigger": "_did__strategy__1479567967809__E7AD96E795A5__trigger__rt"
+      }
+    },
+    "groupbykeys": ["did"]
+  }
+]

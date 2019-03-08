@@ -1,0 +1,36 @@
+[
+  {
+    "category": "VISITOR",
+    "name": "visit_404_H_regist_H_count_did",
+    "tags": [
+      ""
+    ],
+    "app": "nebula",
+    "score": 9,
+    "checkpoints": "",
+    "test": false,
+    "expire": -1,
+    "remark": "",
+    "checkvalue": "c_ip",
+    "decision": "review",
+    "checktype": "",
+    "scope": "realtime"
+  },
+  {
+    "tags": [
+      ""
+    ],
+    "app": "nebula",
+    "expire": 1572574749523,
+    "checkpoints": "",
+    "category": "ACCOUNT",
+    "remark": "登录请求近期未加载静态资源，单独请求API(PC端)",
+    "name": "策略",
+    "checkvalue": "c_ip",
+    "decision": "review",
+    "score": 53,
+    "checktype": "IP",
+    "test": true,
+    "scope": "profile"
+  }
+]

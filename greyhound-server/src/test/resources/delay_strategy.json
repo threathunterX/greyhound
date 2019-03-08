@@ -1,0 +1,19 @@
+[
+  {
+    "category": "VISITOR",
+    "name": "visit_page_A_no_B_user",
+    "tags": [
+      ""
+    ],
+    "app": "nebula",
+    "score": 9,
+    "checkpoints": "",
+    "test": false,
+    "expire": -1,
+    "remark": "",
+    "checkvalue": "uid",
+    "decision": "review",
+    "checktype": "",
+    "scope": "realtime"
+  }
+]

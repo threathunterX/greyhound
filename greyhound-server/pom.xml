@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>greyhound</artifactId>
+        <groupId>com.threathunter.greyhound</groupId>
+        <version>1.1.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>greyhound-server</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.threathunter.common</groupId>
+            <artifactId>threathunter.common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.threathunter.babel</groupId>
+            <artifactId>babel-rpc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.espertech</groupId>
+            <artifactId>esper</artifactId>
+            <version>${esper.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <dependency>
+                <groupId>com.threathunter.bordercollie</groupId>
+                <artifactId>bordercollie-core</artifactId>
+        </dependency>
+        <!--
+        <dependency>
+            <groupId>com.threathunter.greyhound</groupId>
+            <artifactId>greyhound-tool</artifactId>
+            <version>1.0.2</version>
+            <scope>test</scope>
+        </dependency>
+        -->
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-module-junit4</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-api-mockito</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

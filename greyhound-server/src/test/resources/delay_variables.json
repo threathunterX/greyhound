@@ -1,0 +1,222 @@
+[
+  {
+    "module": "base",
+    "app": "nebula",
+    "name": "HTTP_DYNAMIC",
+    "remark": "动态资源请求",
+    "visible_name": "动态资源请求",
+    "dimension": "",
+    "status": "enable",
+    "type": "event",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_DYNAMIC"
+      }
+    ],
+    "filter": {},
+    "period": {},
+    "function": {},
+    "groupbykeys": [],
+    "hint": {}
+  },
+  {
+    "module": "base",
+    "app": "nebula",
+    "name": "HTTP_DYNAMIC_DELAY",
+    "remark": "http动态资源访问",
+    "visible_name": "http动态资源访问",
+    "dimension": "",
+    "status": "enable",
+    "type": "event",
+    "value_type": "",
+    "value_subtype": "",
+    "value_category": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_DYNAMIC_DELAY"
+      }
+    ],
+    "filter": {},
+    "period": {},
+    "function": {},
+    "groupbykeys": [],
+    "hint": {}
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "type": "filter",
+    "name": "_user__strategy__1482737667010__76697369745F485F3430345F6970__trigger__rt",
+    "remark": "user trigger for strategy visit_page_A_no_B_user",
+    "visible_name": "",
+    "dimension": "uid",
+    "status": "enable",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_DYNAMIC"
+      }
+    ],
+    "filter": {
+      "object": "uri_stem",
+      "operation": "contains",
+      "value": "A",
+      "type": "simple"
+    },
+    "period": {},
+    "function": {
+    },
+    "groupbykeys": []
+  },
+  {
+    "status": "enable",
+    "filter": {},
+    "remark": "delayer collector for strategy visit_page_A_no_B_user",
+    "name": "_user__strategy__1482737667010__76697369745F485F3430345F6970__collector_delayer__rt",
+    "hint": {},
+    "value_category": "",
+    "app": "nebula",
+    "period": {},
+    "module": "realtime",
+    "value_subtype": "",
+    "visible_name": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "_user__strategy__1482737667010__76697369745F485F3430345F6970__trigger__rt"
+      }
+    ],
+    "value_type": "",
+    "groupbykeys": [
+      "uid"
+    ],
+    "function": {
+      "param": "visit_page_A_no_B_user",
+      "config": {
+        "trigger": "_user__strategy__1482737667010__76697369745F485F3430345F6970__trigger__rt",
+        "sleep": 60
+      },
+      "method": "setblacklist"
+    },
+    "type": "delaycollector",
+    "dimension": "uid"
+  },
+  {
+    "status": "enable",
+    "filter": {
+      "object_subtype": "",
+      "object": "delay_strategy",
+      "object_type": "string",
+      "value": "visit_page_A_no_B_user",
+      "source": "HTTP_DYNAMIC_DELAY",
+      "param": "",
+      "operation": "==",
+      "type": "simple"
+    },
+    "remark": "user delay trigger for strategy visit_page_A_no_B_user",
+    "name": "_user__strategy__1482737667010__76697369745F485F3430345F6970__delay_trigger__rt",
+    "hint": {},
+    "value_category": "",
+    "app": "nebula",
+    "period": {},
+    "module": "realtime",
+    "value_subtype": "",
+    "visible_name": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_DYNAMIC_DELAY"
+      }
+    ],
+    "value_type": "",
+    "groupbykeys": [
+      "uid"
+    ],
+    "function": {},
+    "type": "filter",
+    "dimension": "uid"
+  },
+  {
+    "module": "realtime",
+    "app": "nebula",
+    "name": "_user__strategy__1482737667010__76697369745F485F3430345F6970__counter__1__rt",
+    "type": "aggregate",
+    "remark": "temp variable for term",
+    "dimension": "uid",
+    "status": "enable",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "HTTP_DYNAMIC"
+      }
+    ],
+    "filter": {
+      "object": "uri_stem",
+      "operation": "contains",
+      "value": "B",
+      "type": "simple"
+    },
+    "function": {
+      "method": "count"
+    },
+    "groupbykeys": [
+      "uid"
+    ],
+    "period": {}
+  },
+  {
+    "status": "enable",
+    "filter": {
+      "type": "and",
+      "condition": [
+        {
+          "object_subtype": "",
+          "object": "value",
+          "object_type": "long",
+          "value": "1",
+          "source": "_user__strategy__1482737667010__76697369745F485F3430345F6970__counter__1__rt",
+          "param": "",
+          "operation": "<",
+          "type": "simple"
+        }
+      ]
+    },
+    "remark": "collector for strategy visit_page_A_no_B_user",
+    "name": "_user__strategy__1482737667010__76697369745F485F3430345F6970__collect",
+    "hint": {},
+    "value_category": "",
+    "app": "nebula",
+    "period": {},
+    "module": "realtime",
+    "value_subtype": "",
+    "visible_name": "",
+    "source": [
+      {
+        "app": "nebula",
+        "name": "_user__strategy__1482737667010__76697369745F485F3430345F6970__counter__1__rt"
+      },
+      {
+        "app": "nebula",
+        "name": "_user__strategy__1482737667010__76697369745F485F3430345F6970__delay_trigger__rt"
+      }
+    ],
+    "value_type": "",
+    "groupbykeys": [
+      "uid"
+    ],
+    "function": {
+      "param": "visit_page_A_no_B_user",
+      "config": {
+        "trigger": "_user__strategy__1482737667010__76697369745F485F3430345F6970__delay_trigger__rt"
+      },
+      "method": "setblacklist"
+    },
+    "type": "collector",
+    "dimension": "uid"
+  }
+]
