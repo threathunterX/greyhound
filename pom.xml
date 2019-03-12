@@ -9,17 +9,13 @@
     <packaging>pom</packaging>
     <version>1.1.0</version>
     <modules>
-        <!--<module>greyhound-agent</module>-->
-        <!--<module>greyhound-benchmark</module>-->
-        <!--<module>greyhound-client</module>-->
         <module>greyhound-server</module>
-        <!--<module>greyhound-tool</module>-->
     </modules>
 
     <properties>
         <greyhound.version>1.1.0</greyhound.version>
 
-        <threathunter_common.version>2.5.3</threathunter_common.version>
+        <threathunter_common.version>1.0.2</threathunter_common.version>
         <babel.version>1.1.0</babel.version>
         <logback.version>1.1.7</logback.version>
         <slf4j.version>1.7.7</slf4j.version>
@@ -36,29 +32,6 @@
                 <artifactId>greyhound-server</artifactId>
                 <version>${greyhound.version}</version>
             </dependency>
-            <!--
-            <dependency>
-                <groupId>com.threathunter.greyhound</groupId>
-                <artifactId>greyhound-client</artifactId>
-                <version>${greyhound.version}</version>
-            </dependency>
-            
-            <dependency>
-                <groupId>com.threathunter.greyhound</groupId>
-                <artifactId>greyhound-benchmark</artifactId>
-                <version>${greyhound.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.threathunter.greyhound</groupId>
-                <artifactId>greyhound-agent</artifactId>
-                <version>${greyhound.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.threathunter.greyhound</groupId>
-                <artifactId>greyhound-tool</artifactId>
-                <version>${greyhound.version}</version>
-            </dependency>
-            -->
             <dependency>
                 <groupId>com.threathunter.common</groupId>
                 <artifactId>threathunter.common</artifactId>
