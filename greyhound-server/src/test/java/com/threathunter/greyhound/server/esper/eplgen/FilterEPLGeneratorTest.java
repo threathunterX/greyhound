@@ -5,7 +5,7 @@ import com.threathunter.variable.meta.FilterVariableMeta;
 import org.junit.Test;
 
 /**
- * Created by daisy on 17/8/25.
+ * 
  */
 public class FilterEPLGeneratorTest {
     @Test

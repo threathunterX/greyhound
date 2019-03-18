@@ -23,7 +23,7 @@ import static com.threathunter.greyhound.server.esper.eplgen.GreyhoundMetaHelper
 import static com.threathunter.greyhound.server.esper.eplgen.GreyhoundMetaHelper.loadVariables;
 
 /**
- * Created by daisy on 17-12-27
+ * 
  */
 public class IntervalStrategyTest {
     private static NotifyReceiver notifyReceiver;

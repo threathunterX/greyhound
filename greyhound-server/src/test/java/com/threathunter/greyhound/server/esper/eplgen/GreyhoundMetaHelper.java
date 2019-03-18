@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by daisy on 17-11-26
+ * 
  */
 public class GreyhoundMetaHelper {
     public static void loadEvents(String file) throws IOException {

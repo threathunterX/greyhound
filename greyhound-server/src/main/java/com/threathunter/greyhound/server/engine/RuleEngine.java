@@ -6,7 +6,7 @@ import com.threathunter.model.Event;
 import java.util.List;
 
 /**
- * Created by daisy on 17-10-29
+ * 
  */
 public interface RuleEngine {
 

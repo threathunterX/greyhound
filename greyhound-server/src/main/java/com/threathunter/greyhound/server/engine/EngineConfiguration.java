@@ -5,7 +5,7 @@ import com.threathunter.variable.DimensionType;
 import java.util.Set;
 
 /**
- * Created by daisy on 17/6/28.
+ * 
  */
 public class EngineConfiguration {
     private int slidingWidthInSec = 5 * 60;

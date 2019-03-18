@@ -22,7 +22,7 @@ import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
 
 /**
- * Created by daisy on 16/8/3.
+ * 
  */
 public class EsperDimensionService {
     private static final Logger LOGGER = LoggerFactory.getLogger(EsperDimensionService.class);

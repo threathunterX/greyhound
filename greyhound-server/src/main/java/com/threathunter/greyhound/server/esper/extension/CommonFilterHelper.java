@@ -4,7 +4,7 @@ package com.threathunter.greyhound.server.esper.extension;
 import com.threathunter.util.LocationHelper;
 
 /**
- * Created by daisy on 16-1-20.
+ * 
  */
 public class CommonFilterHelper implements EsperExtension {
     public static boolean ipEqual(String leftip, String type, String param) {

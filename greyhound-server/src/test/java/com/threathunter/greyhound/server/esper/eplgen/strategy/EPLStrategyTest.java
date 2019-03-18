@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.function.Consumer;
 
 /**
- * Created by daisy on 17-10-15
+ * 
  */
 public class EPLStrategyTest {
     EPLServer server;

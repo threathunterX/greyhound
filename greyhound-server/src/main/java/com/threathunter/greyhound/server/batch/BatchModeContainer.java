@@ -18,7 +18,7 @@ import java.util.*;
 import java.util.concurrent.*;
 
 /**
- * Created by daisy on 17-10-29
+ * 
  */
 public class BatchModeContainer implements RuleEngine {
     private static final Logger LOGGER = LoggerFactory.getLogger("analytics");

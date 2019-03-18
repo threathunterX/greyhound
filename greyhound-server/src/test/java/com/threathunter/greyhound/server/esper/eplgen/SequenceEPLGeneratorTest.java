@@ -5,7 +5,7 @@ import com.threathunter.variable.meta.SequenceVariableMeta;
 import org.junit.Test;
 
 /**
- * Created by daisy on 17-10-8
+ * 
  */
 public class SequenceEPLGeneratorTest {
     @Test

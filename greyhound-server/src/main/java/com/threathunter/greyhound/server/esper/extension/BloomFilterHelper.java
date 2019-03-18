@@ -5,7 +5,7 @@ import com.threathunter.util.BloomFilterInWindow;
 import static com.threathunter.common.Utility.isEmptyStr;
 
 /**
- * Created by lw on 2015/4/24.
+ * 
  */
 public class BloomFilterHelper implements EsperExtension {
 

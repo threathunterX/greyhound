@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * Created by daisy on 17-11-13
+ * 
  */
 public class StrategyTriggerManager {
     private static final Logger LOGGER = LoggerFactory.getLogger(StrategyTriggerManager.class);

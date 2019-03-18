@@ -5,7 +5,7 @@ import com.threathunter.variable.meta.DualVariableMeta;
 import org.junit.Test;
 
 /**
- * Created by daisy on 17-10-13
+ * 
  */
 public class DualEPLGeneratorTest {
     @Test

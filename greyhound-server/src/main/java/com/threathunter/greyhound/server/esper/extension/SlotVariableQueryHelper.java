@@ -4,7 +4,7 @@ import com.threathunter.common.Identifier;
 import com.threathunter.greyhound.server.batch.BatchModeContainer;
 
 /**
- * Created by daisy on 16/9/9.
+ * 
  */
 public class SlotVariableQueryHelper {
 

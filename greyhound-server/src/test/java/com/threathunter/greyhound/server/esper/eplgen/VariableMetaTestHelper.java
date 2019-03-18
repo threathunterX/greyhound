@@ -14,7 +14,7 @@ import java.util.*;
 import static com.threathunter.greyhound.server.esper.eplgen.GreyhoundMetaHelper.loadEvents;
 
 /**
- * Created by daisy on 17-9-7
+ * 
  */
 public class VariableMetaTestHelper {
     private static Map<String, VariableMeta> metas;

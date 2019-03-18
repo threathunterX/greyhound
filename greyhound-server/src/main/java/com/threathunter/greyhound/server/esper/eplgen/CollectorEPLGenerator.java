@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created by daisy on 17/8/25.
+ * 
  */
 public class CollectorEPLGenerator extends VariableEPLGenerator<CollectorVariableMeta> {
 

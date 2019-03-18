@@ -8,7 +8,7 @@ import com.threathunter.variable.meta.DelayCollectorVariableMeta;
 import java.util.*;
 
 /**
- * Created by daisy on 16/7/20.
+ * 
  */
 public class StrategyInfoCache {
     private static final StrategyInfoCache INSTANCE = new StrategyInfoCache();

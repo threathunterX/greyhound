@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Created by daisy on 17/8/25.
+ * 
  */
 public abstract class VariableEPLGenerator<V extends VariableMeta> {
     private static final Logger LOGGER = LoggerFactory.getLogger(VariableEPLGenerator.class);

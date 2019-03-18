@@ -3,7 +3,7 @@ package com.threathunter.greyhound.server.engine;
 import com.threathunter.model.Event;
 
 /**
- * Created by daisy on 17-11-15
+ * 
  */
 public class TriggerEvent {
 

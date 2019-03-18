@@ -16,7 +16,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by daisy on 17-11-10
+ * 
  */
 public class TriggerHandler {
     private static final Logger LOGGER = LoggerFactory.getLogger(TriggerHandler.class);

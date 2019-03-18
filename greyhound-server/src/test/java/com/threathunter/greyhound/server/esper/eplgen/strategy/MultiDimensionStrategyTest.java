@@ -20,7 +20,7 @@ import java.util.*;
 import static com.threathunter.greyhound.server.esper.eplgen.GreyhoundMetaHelper.*;
 
 /**
- * Created by daisy on 17-11-26
+ * 
  */
 public class MultiDimensionStrategyTest {
     private static NotifyReceiver notifyReceiver;

@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created by daisy on 17/8/24.
+ * 
  */
 public class SequenceEPLGenerator extends VariableEPLGenerator<SequenceVariableMeta> {
     @Override

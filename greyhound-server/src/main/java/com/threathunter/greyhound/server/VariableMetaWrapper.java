@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Created by daisy on 17-11-12
+ * 
  */
 public class VariableMetaWrapper<V extends VariableMeta> {
     private final V meta;

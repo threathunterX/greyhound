@@ -22,7 +22,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
 
 /**
- * Created by daisy on 17-11-14
+ * 
  */
 public class NoticeSender {
     private static final Logger LOGGER = LoggerFactory.getLogger(NoticeSender.class);

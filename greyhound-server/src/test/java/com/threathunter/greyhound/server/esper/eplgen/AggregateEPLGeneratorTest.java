@@ -5,7 +5,7 @@ import com.threathunter.variable.meta.AggregateVariableMeta;
 import org.junit.Test;
 
 /**
- * Created by daisy on 17-9-7
+ * 
  */
 public class AggregateEPLGeneratorTest {
     @Test
